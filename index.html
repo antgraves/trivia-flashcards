@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LearnedLeague Trivia Flashcards - Study trivia questions from LearnedLeague">
+    <title>LearnedLeague Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>LearnedLeague Flashcards</h1>
+            <div class="stats">
+                <span id="question-counter">0 questions loaded</span>
+            </div>
+        </header>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading questions...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="error-state hidden">
+            <p class="error-message">Failed to load questions. Please make sure learnedleague_questions.csv is in the same folder.</p>
+            <button onclick="location.reload()" class="btn btn-primary">Retry</button>
+        </div>
+
+        <!-- Main Flashcard Area -->
+        <main id="flashcard-container" class="flashcard-container hidden">
+            <!-- Flashcard -->
+            <div class="flashcard" id="flashcard">
+                <div class="card-header">
+                    <span class="category" id="category">CATEGORY</span>
+                    <span class="meta" id="meta">Season X • Match Y • Q#</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="question-side" id="question-side">
+                        <p class="question-text" id="question-text">Question text will appear here</p>
+                        <div class="additional-content" id="additional-content-container"></div>
+                    </div>
+
+                    <div class="answer-side hidden" id="answer-side">
+                        <div class="answer-label">Answer:</div>
+                        <p class="answer-text" id="answer-text">Answer will appear here</p>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="show-answer-btn" onclick="toggleAnswer()">
+                        Show Answer
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button class="btn btn-primary" onclick="loadNextQuestion()">
+                    Next Question
+                </button>
+            </div>
+
+            <!-- Filters (optional future feature) -->
+            <div class="filters-toggle">
+                <button class="btn btn-text" onclick="toggleFilters()">
+                    <span id="filters-icon">▼</span> Filters
+                </button>
+            </div>
+
+            <div class="filters hidden" id="filters">
+                <div class="filter-group">
+                    <label for="season-filter">Season:</label>
+                    <select id="season-filter" onchange="applyFilters()">
+                        <option value="">All Seasons</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter" onchange="applyFilters()">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-secondary" onclick="resetFilters()">Reset Filters</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Data from <a href="https://learnedleague.com" target="_blank" rel="noopener">LearnedLeague</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
